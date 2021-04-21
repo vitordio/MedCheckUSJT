@@ -1,6 +1,3 @@
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-
 <!-- Sobre o projeto -->
 ## Sobre o projeto
 Descrição do projeto...
@@ -24,8 +21,3 @@ Descrição do projeto...
 8. Vitor Rubio Gracia Dio
 
 Link do projeto: [https://github.com/vitordio/MedCheckUSJT/settings/access](https://github.com/vitordio/MedCheckUSJT/settings/access)
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/vitordio/MedCheckUSJT/graphs/contributors
