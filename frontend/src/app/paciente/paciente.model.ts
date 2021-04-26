@@ -1,8 +1,10 @@
+//escreve direito ai seus cabaço
+
 export interface Paciente {
-  id: string,
-  nome: string,
-  cpf: string,
+  idPaciente: string,
+  nomePaciente: string,
+  cpfPaciente: string,
   leito: string,
-  dat_internacao: Date,
-  dat_alta: Date
+  data_internacao: Date,
+  data_alta: Date
 }

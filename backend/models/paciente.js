@@ -1,11 +1,28 @@
-const mongoose = require('mongoose');
+const db = require('../util/database');
 
-const pacienteSchema = mongoose.Schema({
-    nome: { type: String, required: true },
-    cpf: { type: String, required: true },
-    leito: { type: String, required: true },
-    dat_internacao: { type: Date, required: true },
-    dat_alta: { type: Date, required: false }
-})
+module.exports = class Grocery {
+    constructor(idPaciente, nomePaciente, cpfPaciente, leito, data_internacao, data_alta) {
+        this.idPaciente = idPaciente;
+        this.nomePaciente = nomePaciente;
+        this.cpfPaciente = cpfPaciente;
+        this.leito = leito;
+        this.data_internacao = data_internacao;
+        this.data_alta = data_alta;
+    }
 
-module.exports = mongoose.model('Paciente', pacienteSchema);
+    static fetchAll() {
+        return db.execute('SELECT * FROM pacientes')
+    }
+
+    static post(nomePaciente, cpfPaciente, leito, data_internacao, data_alta) {
+        return db.execute('INSERT INTO pacientes (nomePaciente, cpfPaciente, leito, data_internacao, data_alta) VALUES (?,?,?,?,?)', [nomePaciente, cpfPaciente, leito, data_internacao, data_alta]);
+    }
+
+    static update(idPaciente, nomePaciente, cpfPaciente, leito, data_internacao, data_alta) {
+        return db.execute('UPDATE pacientes SET nomePaciente=?, cpfPaciente=?, leito=?, data_internacao=?, data_alta=? WHERE idPaciente=?', [nomePaciente, cpfPaciente, leito, data_internacao, data_alta, idPaciente]);
+    }
+
+    static delete(idPaciente) {
+        return db.execute('DELETE FROM pacientes WHERE idPaciente=?', [idPaciente]);
+    }
+};

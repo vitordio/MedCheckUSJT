@@ -1,0 +1,23 @@
+{
+  "name": "MedCheckUSJT",
+  "version": "1.0.0",
+  "description": "<!-- Sobre o projeto --> ## Sobre o projeto Descrição do projeto...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitordio/MedCheckUSJT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitordio/MedCheckUSJT/issues"
+  },
+  "homepage": "https://github.com/vitordio/MedCheckUSJT#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
