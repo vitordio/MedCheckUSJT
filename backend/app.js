@@ -16,6 +16,9 @@ const Paciente = require('./models/paciente');
 const Familiar = require('./models/familiar');
 const Status   = require('./models/status')
 
+// Importando as rotas definidas para o paciente
+const pacienteRoutes = require('./routes/paciente');
+
 const mongoose = require('mongoose');
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@${dbCluster}.vhzwx.mongodb.net/${dbName}?retryWrites=true&w=majority`)
 .then(() => {
@@ -24,3 +27,11 @@ mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@${dbCluster}.vhzwx.mongo
   console.log('Conexão NOK');
 })
 
+app.use ((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE,OPTIONS');
+  next();
+});
+
+app.use('/pacientes/', pacienteRoutes);
