@@ -1,0 +1,18 @@
+:host {
+  margin-top: 1rem;
+  display: block;
+  }
+
+  mat-expansion-panel{
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  mat-paginator{
+    margin-top: 1rem;
+  }
+
+  mat-spinner {
+    margin: auto;
+   }
