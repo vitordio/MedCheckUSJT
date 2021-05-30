@@ -1,6 +1,7 @@
-mat-form-field {
-  width: 100%;
- }
- mat-spinner{
-  margin: auto;
- }
+mat-card{
+  position: relative;
+  width: 20%;
+  margin-left: 1450px;
+}
+
+

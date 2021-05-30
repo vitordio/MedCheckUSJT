@@ -1,0 +1,9 @@
+mat-card{
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+
+mat-spinner {
+  margin: auto;
+ }

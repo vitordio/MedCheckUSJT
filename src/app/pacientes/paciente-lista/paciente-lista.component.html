@@ -1,5 +1,6 @@
 <mat-spinner *ngIf="estaCarregando"></mat-spinner>
 <mat-accordion *ngIf="pacientes.length>0 && !estaCarregando">
+  <h3>Lista de Pacientes</h3>
   <mat-expansion-panel *ngFor="let paciente of pacientes">
     <mat-expansion-panel-header>{{ paciente.nomePaciente }}</mat-expansion-panel-header>
     <p> <strong>CPF: </strong>  {{ paciente.cpfPaciente }}</p>
@@ -11,9 +12,12 @@
     <p> <strong>Data de internação: </strong>  {{ paciente.data_internacao }}</p>
     <hr />
     <p> <strong>Data de alta: </strong>  {{ paciente.data_alta }}</p>
+
+
     <mat-action-row>
       <button mat-button color ="accent" (click)="qualSenha(paciente.idPaciente, paciente.senha)">Senha de Acesso</button>
-      <button mat-button color="primary" [routerLink]="['/editar',paciente.idPaciente]">Editar</button>
+
+      <button mat-button color="primary" [routerLink]="['/editarPaciente',paciente.idPaciente]">Editar</button>
       <button mat-button color="warn" (click)="onDelete(paciente.idPaciente)">Remover</button>
     </mat-action-row>
   </mat-expansion-panel>

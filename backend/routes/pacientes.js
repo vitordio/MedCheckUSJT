@@ -1,24 +1,53 @@
 const express = require("express");
 const router = express.Router();
 const Paciente = require('../models/paciente');
+const bcrypt = require('bcrypt');
 
-router.post('', (req, res, next) => {
-  const paciente = new Paciente({
-    nomePaciente: req.body.nomePaciente,
-    cpfPaciente: req.body.cpfPaciente,
-    idadePaciente: req.body.idadePaciente,
-    leito: req.body.leito,
-    data_internacao: req.body.data_internacao,
-    data_alta: req.body.data_alta,
-    senha: req.body.senha
+router.post('/login', (req, res, next) => {
+  Paciente.findOne({ cpfPaciente: req.body.cpfPaciente }).then(u => {
+    if (!u) {
+      return res.status(401).json({
+        mensagem: "CPF inválido"
+      })
+    }
+    return bcrypt.compare(req.body.senha, u.senha);
   })
-  paciente.save().
-    then(pacienteInserido => {
-      res.status(201).json({
-        mensagem: "Paciente inserido.",
-        idPaciente: pacienteInserido._id
+    .then(result => {
+      if (!result) {
+        return res.status(401).json({
+          mensagem: "senha inválida"
+        })
+      }
+    })
+    .catch(err => {
+      return res.status(401).json({
+        mensagem: "Login falhou: " + err
       })
     })
+})
+
+router.post('', (req, res, next) => {
+      const paciente = new Paciente({
+        nomePaciente: req.body.nomePaciente,
+        cpfPaciente: req.body.cpfPaciente,
+        idadePaciente: req.body.idadePaciente,
+        leito: req.body.leito,
+        data_internacao: req.body.data_internacao,
+        data_alta: req.body.data_alta,
+        senha: req.body.senha
+      })
+      paciente.save()
+      .then(pacienteInserido => {
+          res.status(201).json({
+            mensagem: "Paciente criado",
+            idPaciente: pacienteInserido._id
+          });
+        })
+        .catch(err => {
+          res.status(500).json({
+            erro: err
+          })
+        })
 });
 
 router.get('', (req, res, next) => {
@@ -44,7 +73,7 @@ router.get('', (req, res, next) => {
     })
 })
 
-router.delete('', (req, res, next) => {
+router.delete("/:idPaciente", (req, res, next) => {
   Paciente.deleteOne({ _id: req.params.idPaciente }).then((resultado) => {
     console.log(resultado);
     res.status(200).json({ mensagem: "Paciente removido" })

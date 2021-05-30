@@ -13,7 +13,7 @@ import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 })
 export class PacienteInserirComponent implements OnInit {
 
-  private modo: string = "criar";
+  private modo: string = "criarPaciente";
   private idPaciente!: any;
   public paciente!: any;
   public estaCarregando: boolean = false;
@@ -21,7 +21,7 @@ export class PacienteInserirComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("idPaciente")) {
-        this.modo = "editar";
+        this.modo = "editarPaciente";
         this.idPaciente = paramMap.get("idPaciente");
         this.estaCarregando = true;
         this.pacienteService.getPaciente(this.idPaciente).subscribe(dadosPac => {
@@ -38,7 +38,7 @@ export class PacienteInserirComponent implements OnInit {
           }
         })
       } else {
-        this.modo = "criar";
+        this.modo = "criarPaciente";
         this.idPaciente = null;
       }
     });
@@ -50,7 +50,7 @@ export class PacienteInserirComponent implements OnInit {
       return;
     }
     this.estaCarregando = true;
-    if (this.modo === "criar") {
+    if (this.modo === "criarPaciente") {
       var senha = Math.random().toString(36).slice(-5);
 
       this.pacienteService.adicionarPaciente(
