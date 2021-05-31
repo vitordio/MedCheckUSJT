@@ -1,0 +1,92 @@
+<h1>Atualizar status paciente</h1>
+<mat-vertical-stepper>
+  <form>
+    <mat-step label="Temperatura">
+      <input type="number"
+      placeholder="Insira a temperatura do cliente"
+      required
+      matInput
+      name="temperatura"
+      ngModel
+      >
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Pressão arterial">
+      <input type="number"
+      placeholder="Insira a pressão arterial do cliente"
+      required
+      matInput
+      name="pressao"
+      ngModel
+      >
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Nível evolução">
+      <p>
+        Selecione o nível de evolução do paciente:
+      </p>
+      <input type="radio" id="ruim" name="nivelEvolucao"ngModel value="ruim">
+      <label for="ruim">Ruim</label>
+      <input type="radio" id="regular" name="nivelEvolucao" ngModel value="regular">
+      <label for="regular">Regular</label>
+      <input type="radio" id="bom" name="nivelEvolucao" ngModel value="bom">
+      <label for="bom">Bom</label><br>
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Problemas respiratórios">
+      <p>
+        O paciente apresenta problemas respiratórios?
+      </p>
+      <input type="radio" id="sim" name="problemasRespiratorios"ngModel value="sim">
+      <label for="sim">Sim</label>
+      <input type="radio" id="nao" name="problemasRespiratorios" ngModel value="nao">
+      <label for="nao">Não</label>
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Cansaço">
+      <p>
+        O paciente apresenta cansaço?
+      </p>
+      <input type="radio" id="sim" name="cansaco"ngModel value="sim">
+      <label for="sim">Sim</label>
+      <input type="radio" id="nao" name="cansaco" ngModel value="nao">
+      <label for="nao">Não</label>
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Alimentação">
+      <p>
+        O paciente se alimenta adequadamente?
+      </p>
+      <input type="radio" id="sim" name="cansaco"ngModel value="sim">
+      <label for="sim">Sim</label>
+      <input type="radio" id="nao" name="cansaco" ngModel value="nao">
+      <label for="nao">Não</label>
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+    <mat-step label="Observações" optional placeholder="Insira as observações">
+      <textarea matInput></textarea>
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </mat-step>
+  </form>
+</mat-vertical-stepper>

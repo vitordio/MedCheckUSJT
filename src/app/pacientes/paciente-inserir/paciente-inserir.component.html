@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <form (submit)="onAdicionarPaciente(pacienteForm)" *ngIf="!estaCarregando" #pacienteForm="ngForm">
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        minlength="4"
+        matInput
+        placeholder="Nome do paciente"
+        name="nomePaciente"
+        ngModel
+        #nomePaciente="ngModel"
+      />
+      <mat-error *ngIf="nomePaciente.invalid">Digite um nome válido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        minlength="4"
+        matInput
+        placeholder="CPF do paciente"
+        name="cpfPaciente"
+        ngModel
+        #cpfPaciente="ngModel"
+      />
+      <mat-error *ngIf="cpfPaciente.invalid">Digite um CPF</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="date"
+        required
+        minlength="2"
+        matInput
+        placeholder="Data de nascimento"
+        name="idadePaciente"
+        ngModel
+        #idadePaciente="ngModel"
+      />
+      <mat-error *ngIf="idadePaciente.invalid">Digite a data de nascimento do paciente</mat-error>
+      </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        matInput
+        placeholder="Leito"
+        name="leito"
+        ngModel
+        #leito="ngModel"
+      />
+      <mat-error *ngIf="leito.invalid">Insira o número do leito</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="date"
+        required
+        matInput
+        placeholder="Data de Internação"
+        name="data_internacao"
+        ngModel
+        #data_internacao="ngModel"
+      />
+      <mat-error *ngIf="data_internacao.invalid">Insira a data de internação</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="date"
+        matInput
+        placeholder="Data de Alta"
+        name="data_alta"
+        ngModel
+        #data_alta="ngModel"
+      />
+    </mat-form-field>
+      <input
+        type="text"
+        matInput
+        name="senha"
+        hidden
+        ngModel
+        #senha="ngModel"
+      />
+    <br />
+    <button color="primary" mat-raised-button>Salvar</button>
+  </form>
+</mat-card>

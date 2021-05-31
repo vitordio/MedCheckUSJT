@@ -1,0 +1,82 @@
+<mat-card>
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <form (submit)="onAdicionarUsuario(usuarioForm)" *ngIf="!estaCarregando" #usuarioForm="ngForm">
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        minlength="4"
+        matInput
+        placeholder="Nome do usuário"
+        name="nomeUsuario"
+        ngModel
+        #nomeUsuario="ngModel"
+      />
+      <mat-error *ngIf="nomeUsuario.invalid">Digite um nome válido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        minlength="4"
+        matInput
+        placeholder="CPF do usuário"
+        name="cpfUsuario"
+        ngModel
+        #cpfUsuario="ngModel"
+      />
+      <mat-error *ngIf="cpfUsuario.invalid">Digite um CPF</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="date"
+        required
+        minlength="2"
+        matInput
+        placeholder="Data de nascimento"
+        name="idadeUsuario"
+        ngModel
+        #idadeUsuario="ngModel"
+      />
+      <mat-error *ngIf="idadeUsuario.invalid">Digite a data de nascimento do usuario</mat-error>
+      </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        required
+        matInput
+        placeholder="Matrícula funcional"
+        name="funcional"
+        ngModel
+        #funcional="ngModel"
+      />
+      <mat-error *ngIf="funcional.invalid">Insira a matrícula funcional</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="tel"
+        required
+        matInput
+        placeholder="Telefone de contato"
+        name="telefone"
+        ngModel
+        #telefone="ngModel"
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="telefone.invalid">Insira o telefone de contato</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="Senha"
+        name="password"
+        ngModel
+        #password="ngModel"
+      />
+      <mat-error *ngIf="password.invalid ">Senha necessária</mat-error>
+    </mat-form-field>
+    <br />
+    <button color="primary" mat-raised-button>Salvar</button>
+  </form>
+</mat-card>

@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!estaCarregando">
+  <mat-form-field>
+  <input matInput name="cpf" ngModel #cpfInput="ngModel" type="text"
+ placeholder="CPF" required>
+  <mat-error *ngIf="cpfInput.invalid">Digite um CPF válido</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput name="password" #passwordInput="ngModel" ngModel type="password"
+ placeholder="Senha" required>
+  <mat-error *ngIf="passwordInput.invalid">Senha inválida</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="accent" type="submit">Login</button>
+  </form>
+ </mat-card>

@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="estaCarregando"></mat-spinner>
+<mat-accordion *ngIf="usuarios.length>0 && !estaCarregando">
+  <mat-expansion-panel *ngFor="let usuario of usuarios">
+    <mat-expansion-panel-header>{{ usuario.nomeUsuario }}</mat-expansion-panel-header>
+    <p> <strong>CPF: </strong>  {{ usuario.cpfUsuario }}</p>
+    <hr />
+    <p> <strong>Idade: </strong>  {{ getAge(usuario.idadeUsuario)}}</p>
+    <hr />
+    <p> <strong>Matrícula funcional: </strong>  {{ usuario.funcional }}</p>
+    <hr />
+    <p> <strong>Telefone: </strong>  {{ usuario.telefone }}</p>
+    <mat-action-row >
+      <button mat-button color="primary" [routerLink]="['/editarUsuario',usuario.idUsuario]">Editar</button>
+      <button mat-button color="warn" (click)="onDelete(usuario.idUsuario)">Remover</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="mat-body-1" style="text-align: center;" *ngIf="usuarios.length<=0 && !
+estaCarregando">Nenhum usuario cadastrado</p>
