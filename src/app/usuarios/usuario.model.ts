@@ -7,3 +7,8 @@ export interface Usuario {
   telefone: string,
   password: string
 }
+
+export interface UsuarioAuth {
+  cpfUsuario: string,
+  password: string
+}

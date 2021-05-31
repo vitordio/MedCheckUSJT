@@ -2,14 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
 import { FormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -19,12 +21,15 @@ import { PacienteListaComponent } from './pacientes/paciente-lista/paciente-list
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { UsuarioListaComponent } from './usuarios/usuario-lista/usuario-lista.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
+import { ErroInterceptor } from './erro-interceptor';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { PacienteService } from './pacientes/paciente.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ChatComponent } from './chat/chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { ErroComponent } from './erro/erro/erro.component';
+import { PacienteStatusComponent } from './pacientes/paciente-status/paciente-status.component';
 
 
 @NgModule({
@@ -35,9 +40,10 @@ import { SignupComponent } from './auth/signup/signup.component';
     PacienteListaComponent,
     ChatComponent,
     LoginComponent,
-    SignupComponent,
     UsuarioInserirComponent,
     UsuarioListaComponent,
+    ErroComponent,
+    PacienteStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +59,16 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    AppRoutingModule
+    MatDialogModule,
+    AppRoutingModule,
+    MatStepperModule
   ],
-  providers: [PacienteService],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi: true },
+
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErroComponent]
 })
 export class AppModule { }

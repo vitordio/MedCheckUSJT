@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Paciente = require('../models/paciente');
 const bcrypt = require('bcrypt');
+const checkAuth = require('../middleware/check-auth');
 
 router.post('/login', (req, res, next) => {
   Paciente.findOne({ cpfPaciente: req.body.cpfPaciente }).then(u => {
@@ -26,28 +27,23 @@ router.post('/login', (req, res, next) => {
     })
 })
 
-router.post('', (req, res, next) => {
-      const paciente = new Paciente({
-        nomePaciente: req.body.nomePaciente,
-        cpfPaciente: req.body.cpfPaciente,
-        idadePaciente: req.body.idadePaciente,
-        leito: req.body.leito,
-        data_internacao: req.body.data_internacao,
-        data_alta: req.body.data_alta,
-        senha: req.body.senha
-      })
-      paciente.save()
-      .then(pacienteInserido => {
-          res.status(201).json({
-            mensagem: "Paciente criado",
-            idPaciente: pacienteInserido._id
-          });
-        })
-        .catch(err => {
-          res.status(500).json({
-            erro: err
-          })
-        })
+router.post('', checkAuth, (req, res, next) => {
+  const paciente = new Paciente({
+    nomePaciente: req.body.nomePaciente,
+    cpfPaciente: req.body.cpfPaciente,
+    idadePaciente: req.body.idadePaciente,
+    leito: req.body.leito,
+    data_internacao: req.body.data_internacao,
+    data_alta: req.body.data_alta,
+    senha: req.body.senha
+  })
+  paciente.save()
+    .then(pacienteInserido => {
+      res.status(201).json({
+        mensagem: "Paciente criado",
+        idPaciente: pacienteInserido._id
+      });
+    })
 });
 
 router.get('', (req, res, next) => {
@@ -70,17 +66,35 @@ router.get('', (req, res, next) => {
         pacientes: pacientesEncontrados,
         maxPacientes: count
       })
+    }).catch(erro => {
+      res.status(500).json({
+        mensagem: "Busca de clientes falhou. Tente novamente mais tarde."
+      })
     })
 })
 
-router.delete("/:idPaciente", (req, res, next) => {
+router.get('/:idPaciente', (req, res, next) => {
+  Paciente.findById(req.params.idPaciente).then(pac => {
+    if (pac) {
+      res.status(200).json(pac);
+    }
+    else
+      res.status(404).json({ mensagem: "Paciente não encontrado." })
+  })
+});
+
+router.delete("/:idPaciente", checkAuth, (req, res, next) => {
   Paciente.deleteOne({ _id: req.params.idPaciente }).then((resultado) => {
     console.log(resultado);
     res.status(200).json({ mensagem: "Paciente removido" })
-  });
+  }).catch(erro => {
+    res.status(500).json({
+      mensagem: "Remoção de cliente falhou. Tente novamente mais tarde."
+    })
+  })
 });
 
-router.put("/:idPaciente", (req, res, next) => {
+router.put("/:idPaciente", checkAuth, (req, res, next) => {
   const paciente = new Paciente({
     _id: req.params.idPaciente,
     nomePaciente: req.body.nomePaciente,
@@ -96,16 +110,6 @@ router.put("/:idPaciente", (req, res, next) => {
       console.log(resultado)
       res.status(200).json({ mensagem: 'Atualização realizada com sucesso.' })
     });
-});
-
-router.get('/:idPaciente', (req, res, next) => {
-  Paciente.findById(req.params.idPaciente).then(pac => {
-    if (pac) {
-      res.status(200).json(pac);
-    }
-    else
-      res.status(404).json({ mensagem: "Paciente não encontrado." })
-  })
-});
+})
 
 module.exports = router;

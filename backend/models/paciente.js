@@ -8,7 +8,7 @@ const pacienteSchema = mongoose.Schema({
   leito: { type: String, required: true },
   data_internacao: { type: Date, required: true },
   data_alta: { type: Date, required: false },
-  senha: { type: String, required: false }
+  senha: { type: String, required: true }
 });
 //criamos o modelo associado ao nome paciente e exportamos
 //tornando acessível para outros módulos da aplicação

@@ -1,3 +1,4 @@
+import { PacienteStatusComponent } from './pacientes/paciente-status/paciente-status.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,18 +8,18 @@ import { UsuarioListaComponent } from './usuarios/usuario-lista/usuario-lista.co
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { ChatComponent } from './chat/chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './auth/auth.guard'
 
 const routes: Routes = [
   { path: 'listarUsuario', component: UsuarioListaComponent },
   { path: 'listarPaciente', component: PacienteListaComponent },
-  { path: 'criarPaciente', component: PacienteInserirComponent },
-  { path: 'criarUsuario', component: UsuarioInserirComponent },
-  { path: 'editarPaciente/:idPaciente', component: PacienteInserirComponent },
-  { path: 'editarUsuario/:idUsuario', component: UsuarioInserirComponent },
+  { path: 'criarPaciente', component: PacienteInserirComponent, canActivate: [AuthGuard] },
+  { path: 'criarUsuario', component: UsuarioInserirComponent, canActivate: [AuthGuard] },
+  { path: 'editarPaciente/:idPaciente', component: PacienteInserirComponent, canActivate: [AuthGuard] },
+  { path: 'editarUsuario/:idUsuario', component: UsuarioInserirComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'chat', component: ChatComponent }
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'pacienteStatus', component: PacienteStatusComponent }
 
 ];
 @NgModule({
@@ -27,7 +28,9 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: [AuthGuard]
+
 })
 export class AppRoutingModule {
 

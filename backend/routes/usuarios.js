@@ -1,10 +1,14 @@
+const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 const Usuario = require('../models/usuario');
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 router.post('/login', (req, res, next) => {
+  let user;
   Usuario.findOne({ cpfUsuario: req.body.cpfUsuario }).then(u => {
+    user = u;
     if (!u) {
       return res.status(401).json({
         mensagem: "CPF inválido"
@@ -18,10 +22,20 @@ router.post('/login', (req, res, next) => {
           mensagem: "senha inválida"
         })
       }
+      const token = jwt.sign(
+        { cpfUsuario: user.cpfUsuario, idUsuario: user._id },
+        'minhasenha',
+        { expiresIn: '1h' }
+      )
+      res.status(200).json({
+        token: token,
+        expiresIn: 3600,
+        idUsuario: user._id
+      })
     })
     .catch(err => {
       return res.status(401).json({
-        mensagem: "Login falhou: " + err
+        mensagem: "Erro no login: " + err
       })
     })
 })
@@ -47,9 +61,14 @@ router.post('', (req, res, next) => {
         })
         .catch(err => {
           res.status(500).json({
-            erro: err
+            mensagem: "Erro com as credenciais"
           })
         })
+    }).catch((erro) => {
+      console.log(erro);
+      res.status(500).json({
+        mensagem: "Tente novamente mais tarde"
+      })
     })
 });
 

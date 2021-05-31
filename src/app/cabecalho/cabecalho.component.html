@@ -1,14 +1,16 @@
 <mat-toolbar color="accent">
-    <span><a routerLink="/">MedCheck</a></span>
+    <span><a routerLink="/login">MedCheck</a></span>
     <span class="separador"></span>
     <ul>
-      <li><a mat-raised-button routerLink="/criarPaciente" routerLinkActive=mat-raised-button color="primary">Novo paciente</a></li>
-      <li><a mat-raised-button routerLink="/criarUsuario" routerLinkActive=mat-raised-button color="primary">Novo usuário</a></li>
-      <li><a mat-raised-button routerLink="/listarPaciente" routerLinkActive=mat-raised-button color="primary">Pacientes</a></li>
-      <li><a mat-raised-button routerLink="/listarUsuario" routerLinkActive=mat-raised-button color="primary">Usuários</a></li>
+      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarPaciente" routerLinkActive=mat-raised-button color="primary">Novo paciente</a></li>
+      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarUsuario" routerLinkActive=mat-raised-button color="primary">Novo usuário</a></li>
+      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarPaciente" routerLinkActive=mat-raised-button color="primary">Pacientes</a></li>
+      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarUsuario" routerLinkActive=mat-raised-button color="primary">Usuários</a></li>
+      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/pacienteStatus" routerLinkActive=mat-raised-button color="primary">Paciente Status</a></li>
     </ul>
     <ul>
-        <li><a mat-raised-button routerLink="/chat" routerLinkActive=mat-raised-button color="primary">Chat</a></li>
-        <li><a mat-raised-button routerLink="/login" routerLinkActive=mat-raised-button color="primary">Login</a></li>
-    </ul>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/chat" routerLinkActive=mat-raised-button color="primary">Chat</a></li>
+        <li *ngIf="!autenticado" ><a mat-raised-button routerLink="/login" routerLinkActive=mat-raised-button color="primary">Login</a></li>
+        <li *ngIf="!autenticado" ><button (click)="onLogout()" mat-button>Logout</button></li>
+      </ul>
   </mat-toolbar>

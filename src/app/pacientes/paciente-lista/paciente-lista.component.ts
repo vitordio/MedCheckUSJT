@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Paciente } from '../paciente.model';
 import { PacienteService } from '../paciente.service';
 import { Subscription, Observable } from 'rxjs';
+import { UsuarioService } from 'src/app/usuarios/usuario.service';
 
 @Component({
   selector: 'app-paciente-lista',
@@ -13,14 +14,13 @@ export class PacienteListaComponent implements OnInit, OnDestroy {
   pacientes: Paciente[] = [];
   private pacientesSubscription!: Subscription;
   public estaCarregando = false;
+  public autenticado: boolean = false;
+  private authObserver!: Subscription;
 
   constructor(
     public pacienteService: PacienteService,
+    private usuarioService: UsuarioService
   ) { }
-
-  ngOnDestroy(): void {
-    this.pacientesSubscription.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.estaCarregando = true;
@@ -31,6 +31,14 @@ export class PacienteListaComponent implements OnInit, OnDestroy {
         this.estaCarregando = false;
         this.pacientes = pacientes;
       });
+      this.autenticado = this.usuarioService.isAutenticado();
+    this.authObserver = this.usuarioService.getStatusSubject().
+      subscribe((autenticado) => this.autenticado = this.autenticado)
+  }
+
+  ngOnDestroy(): void {
+    this.pacientesSubscription.unsubscribe();
+    this.authObserver.unsubscribe();
   }
 
   onDelete(idPaciente: string): void {

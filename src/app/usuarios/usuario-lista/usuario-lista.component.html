@@ -9,7 +9,7 @@
     <p> <strong>Matrícula funcional: </strong>  {{ usuario.funcional }}</p>
     <hr />
     <p> <strong>Telefone: </strong>  {{ usuario.telefone }}</p>
-    <mat-action-row>
+    <mat-action-row >
       <button mat-button color="primary" [routerLink]="['/editarUsuario',usuario.idUsuario]">Editar</button>
       <button mat-button color="warn" (click)="onDelete(usuario.idUsuario)">Remover</button>
     </mat-action-row>
