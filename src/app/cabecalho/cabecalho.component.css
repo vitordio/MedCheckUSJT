@@ -3,18 +3,144 @@ ul {
   padding: 0;
   margin: 0;
  }
- a {
-  text-decoration: none;
-  color: white;
-  margin-left: 7px;
+
+ .design{
+  background-color:#3CB371;
+  height: 90px;
+  box-shadow: 0px 0px 15px;
+  font-size: 30px;
  }
 
  .separador{
-   flex:1;
- }
-
- ul {
   display: flex;
+    justify-content: space-between;
+
+ }
+.menu{
+  font-family: FreeMono, monospace;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background:#3CB371;
+    height: 90px;
+    color: white;
+  font-size: 21px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 0px;
+  border-bottom: 4px solid #006400;
+}
+
+ a{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background:white;
+    height: 50px;
+    color: white;
+  font-size: 21px;
+  text-decoration: none;
+ }
+
+ .logo{
+  font-family: FreeMono, monospace;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background:#3CB371;
+    height: 50px;
+    color: white;
+  font-size: 30px;
+  padding-left: 12px;
+  padding-right: 30px;
+  border-radius: 0px;
+  text-decoration: none;
  }
 
 
+ .botao{
+  font-family: Arial;
+  display: flex;
+  background:white;
+    height: 50px;
+    color: white;
+  font-size: 21px;
+  border-radius: 1px;
+  text-decoration: none;
+  padding-top: -2px;
+ }
+
+ .menu:hover{
+  height: 90px;
+  background: #006400;
+  color: white;
+ }
+
+ .containerCabecalho {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+h1.logo {
+  margin-left: 8px;
+}
+
+.sidenav {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.navmobile .sidenav {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.login{
+  margin-left: auto;
+}
+
+.logout{
+  font-family: Arial;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background:#c27671;
+    height: 98px;
+    width:207.1px;
+    color: white;
+  font-size: 21px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-bottom: 4px solid rgb(163, 82, 77);
+}
+
+.logout:hover{
+  background: #c75d56;
+}
+
+.itemMenu{
+  font-family: Arial;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 0px;  
+}
+
+.itemMenu:hover{
+  background:rgb(216, 216, 216);
+}
+
+img{
+  width: 60px;
+  height: 60px;
+  padding-left: 12px;
+}

@@ -1,16 +1,26 @@
-<mat-toolbar color="accent">
-    <span><a routerLink="/login">MedCheck</a></span>
-    <span class="separador"></span>
-    <ul>
-      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarPaciente" routerLinkActive=mat-raised-button color="primary">Novo paciente</a></li>
-      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarUsuario" routerLinkActive=mat-raised-button color="primary">Novo usuário</a></li>
-      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarPaciente" routerLinkActive=mat-raised-button color="primary">Pacientes</a></li>
-      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarUsuario" routerLinkActive=mat-raised-button color="primary">Usuários</a></li>
-      <li *ngIf="!autenticado"><a mat-raised-button routerLink="/pacienteStatus" routerLinkActive=mat-raised-button color="primary">Paciente Status</a></li>
-    </ul>
-    <ul>
-        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/chat" routerLinkActive=mat-raised-button color="primary">Chat</a></li>
-        <li *ngIf="!autenticado" ><a mat-raised-button routerLink="/login" routerLinkActive=mat-raised-button color="primary">Login</a></li>
-        <li *ngIf="!autenticado" ><button (click)="onLogout()" mat-button>Logout</button></li>
-      </ul>
-  </mat-toolbar>
+<mat-toolbar class="design">
+  <button class="menu" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+  <img src="https://image.flaticon.com/icons/png/512/196/196123.png">
+  <a class="logo" routerLink="/">MedCheck</a>
+  <span class="separador"></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav"
+                        [style.marginTop.px]="mobileQuery.matches ? 90 : 0">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                [fixedInViewport]="mobileQuery.matches" fixedTopGap="90">
+    <mat-nav-list>
+      <ul>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarPaciente" routerLinkActive=mat-raised-button class="itemMenu">Novo paciente</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/criarUsuario" routerLinkActive=mat-raised-button class="itemMenu">Novo usuário</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarPaciente" routerLinkActive=mat-raised-button class="itemMenu">Pacientes</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/listarUsuario" routerLinkActive=mat-raised-button class="itemMenu">Usuários</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/pacienteStatus" routerLinkActive=mat-raised-button class="itemMenu">Paciente Status</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/prontuario" routerLinkActive=mat-raised-button class="itemMenu">Prontuário</a></li>
+        <li *ngIf="!autenticado"><a mat-raised-button routerLink="/chat" routerLinkActive=mat-raised-button class="itemMenu">Chat</a></li>
+        <li *ngIf="!autenticado" ><a mat-raised-button routerLink="/login" routerLinkActive=mat-raised-button class="itemMenu">Login</a></li>
+        <li *ngIf="!autenticado" ><button (click)="onLogout()" mat-button class="logout">Logout</button></li>
+        </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

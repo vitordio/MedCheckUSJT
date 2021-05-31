@@ -7,3 +7,48 @@ mat-card{
 mat-spinner {
   margin: auto;
  }
+
+ mat-card{
+  position: relative;
+  width: 70%;
+  height: auto;
+  padding: 20px;
+  padding-bottom: 20px;
+  border-radius: 30px;
+  background-color: #3CB371;
+}
+
+form {
+  background-color: #3CB371;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  height: 80%;
+  
+}
+
+a {
+  margin: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+button {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  border-radius: 0px;
+  color: rgb(255, 255, 255);
+  background: #2E8B57;
+  border-bottom: 3px solid #006400;
+  margin-left: 30%;
+}
+
+button:hover {
+  background: #006400;
+  color: white;
+}

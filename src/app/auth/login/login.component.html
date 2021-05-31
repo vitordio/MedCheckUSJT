@@ -2,7 +2,7 @@
   <mat-spinner *ngIf="estaCarregando"></mat-spinner>
   <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!estaCarregando">
   <mat-form-field>
-  <input matInput name="cpf" ngModel #cpfInput="ngModel" type="text"
+  <input matInput name="cpfUsuario" ngModel #cpfInput="ngModel" type="text"
  placeholder="CPF" required>
   <mat-error *ngIf="cpfInput.invalid">Digite um CPF válido</mat-error>
   </mat-form-field>

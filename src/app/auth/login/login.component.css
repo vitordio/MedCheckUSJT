@@ -1,7 +1,8 @@
 mat-card{
-  position: relative;
-  width: 20%;
-  margin-left: 1450px;
+  justify-content: center;
+  position: fixed;
+  width: 40%;
+  margin-left: auto;
 }
 
 

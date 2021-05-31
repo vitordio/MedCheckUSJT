@@ -8,17 +8,21 @@ import { UsuarioListaComponent } from './usuarios/usuario-lista/usuario-lista.co
 import { UsuarioInserirComponent } from './usuarios/usuario-inserir/usuario-inserir.component';
 import { ChatComponent } from './chat/chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
-import { AuthGuard } from './auth/auth.guard'
+//import { AuthGuard } from './auth/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { ProntuarioComponent } from './prontuario/prontuario.component';
 
 const routes: Routes = [
+  { path: "prontuario", component: ProntuarioComponent },
+  { path: "", component: HomeComponent },
   { path: 'listarUsuario', component: UsuarioListaComponent },
   { path: 'listarPaciente', component: PacienteListaComponent },
-  { path: 'criarPaciente', component: PacienteInserirComponent, canActivate: [AuthGuard] },
-  { path: 'criarUsuario', component: UsuarioInserirComponent, canActivate: [AuthGuard] },
-  { path: 'editarPaciente/:idPaciente', component: PacienteInserirComponent, canActivate: [AuthGuard] },
-  { path: 'editarUsuario/:idUsuario', component: UsuarioInserirComponent, canActivate: [AuthGuard] },
+  { path: 'criarPaciente', component: PacienteInserirComponent, /*canActivate: [AuthGuard]*/ },
+  { path: 'criarUsuario', component: UsuarioInserirComponent, /*canActivate: [AuthGuard]*/ },
+  { path: 'editarPaciente/:idPaciente', component: PacienteInserirComponent, /*canActivate: [AuthGuard]*/ },
+  { path: 'editarUsuario/:idUsuario', component: UsuarioInserirComponent, /*canActivate: [AuthGuard]*/ },
   { path: 'login', component: LoginComponent },
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, /*canActivate: [AuthGuard]*/ },
   { path: 'pacienteStatus', component: PacienteStatusComponent }
 
 ];
@@ -29,7 +33,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [AuthGuard]
+  /*providers: [AuthGuard]*/
 
 })
 export class AppRoutingModule {

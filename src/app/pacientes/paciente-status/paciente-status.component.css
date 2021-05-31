@@ -6,8 +6,11 @@ mat-vertical-stepper{
 
 }
 
+
 h1{
   text-align: center;
+  color:#006400;
+  font-size:25px
 }
 
 input{

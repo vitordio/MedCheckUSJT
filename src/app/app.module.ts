@@ -3,9 +3,11 @@ import { Injectable, NgModule } from '@angular/core';
 import { FormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth-interceptor';
+//import { AuthInterceptor } from './auth/auth-interceptor';
 
+import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
+import {MatList, MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog'
@@ -23,6 +25,8 @@ import { UsuarioListaComponent } from './usuarios/usuario-lista/usuario-lista.co
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ErroInterceptor } from './erro-interceptor';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 import { PacienteService } from './pacientes/paciente.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +34,7 @@ import { ChatComponent } from './chat/chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ErroComponent } from './erro/erro/erro.component';
 import { PacienteStatusComponent } from './pacientes/paciente-status/paciente-status.component';
+import { ProntuarioComponent } from './prontuario/prontuario.component';
 
 
 @NgModule({
@@ -44,8 +49,12 @@ import { PacienteStatusComponent } from './pacientes/paciente-status/paciente-st
     UsuarioListaComponent,
     ErroComponent,
     PacienteStatusComponent,
+    ProntuarioComponent,
   ],
   imports: [
+    MatMenuModule,
+    MatDividerModule,
+    MatListModule,
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -64,8 +73,8 @@ import { PacienteStatusComponent } from './pacientes/paciente-status/paciente-st
     MatStepperModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent],

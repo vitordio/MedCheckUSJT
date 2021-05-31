@@ -1,0 +1,19 @@
+.itemMenu{
+    font-family: Arial;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 0px;  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background:#3CB371;
+      height: 50px;
+      color: white;
+    font-size: 21px;
+    text-decoration: none;
+    bottom:100%;
+  }
+  
+  .itemMenu:hover{
+    background:#006400;
+  }

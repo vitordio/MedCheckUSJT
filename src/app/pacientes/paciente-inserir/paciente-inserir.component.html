@@ -1,6 +1,6 @@
 <mat-card>
-  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
-  <form (submit)="onAdicionarPaciente(pacienteForm)" *ngIf="!estaCarregando" #pacienteForm="ngForm">
+  <a>Insira os dados abaixo.</a>
+  <form (submit)="onAdicionarPaciente(pacienteForm)" #pacienteForm="ngForm">
     <mat-form-field>
       <input
         type="text"
@@ -83,6 +83,6 @@
         #senha="ngModel"
       />
     <br />
-    <button color="primary" mat-raised-button>Salvar</button>
+    <button mat-raised-button>Salvar</button>
   </form>
 </mat-card>

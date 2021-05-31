@@ -1,5 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <a>Insira os dados abaixo.</a>
   <form (submit)="onAdicionarUsuario(usuarioForm)" *ngIf="!estaCarregando" #usuarioForm="ngForm">
     <mat-form-field>
       <input
@@ -62,12 +63,12 @@
         ngModel
         #telefone="ngModel"
       />
-      <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="telefone.invalid">Insira o telefone de contato</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
         type="password"
+        required
         matInput
         placeholder="Senha"
         name="password"
@@ -77,6 +78,6 @@
       <mat-error *ngIf="password.invalid ">Senha necessária</mat-error>
     </mat-form-field>
     <br />
-    <button color="primary" mat-raised-button>Salvar</button>
+    <button mat-raised-button>Salvar</button>
   </form>
 </mat-card>
